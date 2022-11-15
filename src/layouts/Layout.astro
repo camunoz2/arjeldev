@@ -1,0 +1,39 @@
+---
+import ContactButton from "../components/ContactButton";
+import SvgLogo from "../images/SvgLogo.svg";
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="text-arjelgrey4 font-body bg-gradient-to-t from-[#C9B9B8] to-[#BDBEE2]"
+  >
+    <div class="container mx-auto px-4">
+      <nav class="flex justify-between items-center py-6">
+        <a href="/" class="hidden md:block">Bienvenid@s</a>
+        <a href="/">
+          <img src={SvgLogo} alt="arjel logo" />
+        </a>
+        <ContactButton client:load />
+      </nav>
+      <div class="py-4 md:py-6"></div>
+      <slot />
+    </div>
+  </body>
+  <footer class="mt-96 mb-6">
+    <p class="text-xl text-center">Arjel / WebDev</p>
+  </footer>
+</html>

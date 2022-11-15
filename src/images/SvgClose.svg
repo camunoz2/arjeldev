@@ -1,0 +1,7 @@
+<svg id="SvgClose" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+  <circle id="Elipse_1" data-name="Elipse 1" cx="10.5" cy="10.5" r="10.5" fill="#aaa"/>
+  <g id="Grupo_1" data-name="Grupo 1" transform="translate(6.812 6.692)">
+    <line id="Línea_1" data-name="Línea 1" x2="7.138" y2="7.138" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+    <line id="Línea_2" data-name="Línea 2" x2="7.138" y2="7.138" transform="translate(7.138 0) rotate(90)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>

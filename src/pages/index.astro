@@ -1,0 +1,52 @@
+---
+import { contentfulClient } from "../lib/contentful";
+import Layout from "../layouts/Layout.astro";
+import HeaderCards from "../components/HeaderCards";
+import type { Project, BlogPost } from "../contentfulTypes";
+import HomeExtras from "../components/HomeExtras";
+import BlogSection from "../components/BlogSection";
+
+const projectQuery = await contentfulClient.getEntries<Project>({
+  content_type: "project",
+});
+
+const blogQuery = await contentfulClient.getEntries<BlogPost>({
+  content_type: "blogPost",
+});
+
+const projects = projectQuery.items.map((item) => {
+  return {
+    title: item.fields.title,
+    body: item.fields.body,
+    cardColor: item.fields.cardColor,
+    featuredImage: item.fields.featuredImage,
+    portraitProjectImage: item.fields.portraitProjectImage,
+    publishDate: new Date(item.fields.publishDate),
+    slug: item.fields.slug,
+    subtitle: item.fields.subtitle,
+    summary: item.fields.summary,
+  };
+});
+
+const posts = blogQuery.items.map((item) => {
+  return {
+    title: item.fields.title,
+    slug: item.fields.slug,
+    publishDate: item.fields.publishDate,
+    featuredImage: item.fields.featuredImage,
+    cardColor: item.fields.cardColor,
+    body: item.fields.body,
+    summary: item.fields.summary,
+  };
+});
+---
+
+<Layout title="Home">
+  <main class="flex flex-col items-end">
+    <div class="flex flex-col gap-4 xl:max-w-[1000px] 2xl:max-w-[1300px]">
+      <HeaderCards data={projects} client:load />
+      <HomeExtras client:load />
+      <BlogSection data={posts} client:load />
+    </div>
+  </main>
+</Layout>
