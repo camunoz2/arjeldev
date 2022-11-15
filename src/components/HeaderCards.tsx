@@ -80,7 +80,7 @@ const HeaderCards = ({ data }: { data: Project[] }) => {
             <div className="flex flex-col items-center lg:flex-row gap-8 2xl:gap-24 px-4 xl:px-16">
               <img
                 className="object-contain mix-blend-luminosity w-[300px] shrink-0 -z-10"
-                src={data[currentCard].featuredImage.fields.file.url}
+                src={data[currentCard].featuredImage!.fields.file.url}
                 alt="2d render for my blog post"
               />
 
@@ -92,9 +92,7 @@ const HeaderCards = ({ data }: { data: Project[] }) => {
                   <p className="text-arjelblue font-display md:text-xl xl:text-xl">
                     {data[currentCard].subtitle}
                   </p>
-                  <p className="text-arjelblue font-display text-xs md:text-xl xl:text-sm">{`Publicado: ${data[
-                    currentCard
-                  ].publishDate.toLocaleDateString("es-CL")}`}</p>
+                  <p className="text-arjelblue font-display text-xs md:text-xl xl:text-sm">{`Publicado: ${data[currentCard].publishDate}`}</p>
                 </div>
 
                 <p className="md:text-xl">{data[currentCard].summary}</p>

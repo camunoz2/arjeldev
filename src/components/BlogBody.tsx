@@ -19,7 +19,7 @@ const ProjectBody = ({ data }: { data: Project }) => {
       >
         <img
           className="mb-10"
-          src={data.featuredImage.fields.file.url}
+          src={data.featuredImage!.fields.file.url}
           alt=""
         />
         <h1 className="text-white text-4xl md:text-6xl lg:text-8xl font-display font-bold">
@@ -56,7 +56,7 @@ const ProjectBody = ({ data }: { data: Project }) => {
             <div
               className="blog-text-container"
               dangerouslySetInnerHTML={{
-                __html: data.body,
+                __html: data.body!,
               }}
             ></div>
           </div>
@@ -64,21 +64,21 @@ const ProjectBody = ({ data }: { data: Project }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4">
             <div className="row-span-1 md:row-span-2">
               <img
-                src={data.portraitProjectImage.fields.file.url}
+                src={data.portraitProjectImage!.fields.file.url}
                 alt=""
                 className="rounded-xl md:h-full object-cover"
               />
             </div>
             <div>
               <img
-                src={data.landscapeProjectImages[0].fields.file.url}
+                src={data.landscapeProjectImages![0].fields.file.url}
                 alt=""
                 className="rounded-xl md:h-full object-cover"
               />
             </div>
             <div>
               <img
-                src={data.landscapeProjectImages[1].fields.file.url}
+                src={data.landscapeProjectImages![1].fields.file.url}
                 alt=""
                 className="rounded-xl md:h-full object-cover"
               />

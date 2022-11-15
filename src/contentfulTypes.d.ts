@@ -126,27 +126,27 @@ export interface Image {
 }
 
 export interface Project {
-  title: string;
+  title?: string;
   subtitle?: any;
-  slug: string;
-  publishDate: Date;
-  summary: string;
-  featuredImage: FeaturedImage;
-  cardColor: string;
-  body: string;
-  portraitProjectImage: Image;
-  landscapeProjectImages: Image[];
-  projectLink: string;
-  usedStack: string[];
-  githubLink: string;
+  slug?: string;
+  publishDate?: string;
+  summary?: string;
+  featuredImage?: FeaturedImage;
+  cardColor?: string;
+  body?: string;
+  portraitProjectImage?: Image;
+  landscapeProjectImages?: Image[];
+  projectLink?: string;
+  usedStack?: string[];
+  githubLink?: string;
 }
 
 export interface BlogPost {
-  title: string;
-  slug: string;
-  publishDate: Date;
-  featuredImage: FeaturedImage;
-  cardColor: string;
-  body: string;
-  summary: string;
+  title?: string;
+  slug?: string;
+  publishDate?: string;
+  featuredImage?: FeaturedImage;
+  cardColor?: string;
+  body?: string;
+  summary?: string;
 }

@@ -1,0 +1,29 @@
+---
+import { contentfulClient } from "../../lib/contentful";
+import type { BlogPost, Project } from "../../contentfulTypes";
+import Layout from "../../layouts/Layout.astro";
+
+interface Props {
+  data: Project;
+}
+
+// Generate Blog pages
+export async function getStaticPaths() {
+  const blogQuery = await contentfulClient.getEntries<BlogPost>({
+    content_type: "blogPost",
+  });
+  const posts = blogQuery.items.map((post) => post.fields);
+  return posts.map((post) => {
+    return {
+      params: { slug: post.slug },
+      props: { data: post },
+    };
+  });
+}
+
+const { data }: Props = Astro.props;
+---
+
+<Layout title={data.title!}>
+  <h1>asd</h1>
+</Layout>
