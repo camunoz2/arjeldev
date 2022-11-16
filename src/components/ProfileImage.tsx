@@ -1,4 +1,4 @@
-import image from "../images/profile-image@2x.png";
+import image from "../images/profile.jpg";
 
 const ProfileImage = ({ widget = false }) => {
   const widgetStyles = widget
@@ -6,7 +6,11 @@ const ProfileImage = ({ widget = false }) => {
     : "rounded-full w-24 overflow-hidden bg-transparent md:bg-arjelgrey1";
   return (
     <div className={widgetStyles}>
-      <img className="w-full h-full object-contain" src={image} alt="me" />
+      <img
+        className="w-full h-full object-contain rounded-lg"
+        src={image}
+        alt="me"
+      />
     </div>
   );
 };
