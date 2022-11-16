@@ -2,7 +2,7 @@
 import { contentfulClient } from "../../lib/contentful";
 import type { Project } from "../../contentfulTypes";
 import Layout from "../../layouts/Layout.astro";
-import BlogBody from "../../components/BlogBody";
+import ProjectBody from "../../components/ProjectBody";
 
 interface Props {
   data: Project;
@@ -26,5 +26,5 @@ const { data }: Props = Astro.props;
 ---
 
 <Layout title={data.title!}>
-  <BlogBody data={data} client:load />
+  <ProjectBody data={data} client:load />
 </Layout>

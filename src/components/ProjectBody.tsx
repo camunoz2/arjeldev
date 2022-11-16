@@ -3,7 +3,7 @@ import type { Project } from "../contentfulTypes";
 import ProjectLink from "./ProjectLink";
 import UsedStack from "./UsedStack";
 
-const BlogBody = ({ data }: { data: Project }) => {
+const ProjectBody = ({ data }: { data: Project }) => {
   return (
     <motion.div
       initial={{ y: 600, opacity: 0 }}
@@ -45,9 +45,9 @@ const BlogBody = ({ data }: { data: Project }) => {
       <div className="grid grid-cols-4 gap-4 mt-4">
         <div className="col-span-4 lg:col-span-1">
           <aside className="flex flex-row lg:flex-col gap-4">
-            <div className="rounded-xl bg-arjelgrey1 p-4 md:p-12 mb-8">
-              twitter
-            </div>
+            <ProjectLink link={data.projectLink} />
+            <ProjectLink isGithub link={data.githubLink} />
+            <UsedStack stack={data.usedStack} />
           </aside>
         </div>
         <main className="col-span-4 lg:col-span-3">
@@ -60,10 +60,34 @@ const BlogBody = ({ data }: { data: Project }) => {
               }}
             ></div>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4">
+            <div className="row-span-1 md:row-span-2">
+              <img
+                src={data.portraitProjectImage!.fields.file.url}
+                alt=""
+                className="rounded-xl md:h-full object-cover"
+              />
+            </div>
+            <div>
+              <img
+                src={data.landscapeProjectImages![0].fields.file.url}
+                alt=""
+                className="rounded-xl md:h-full object-cover"
+              />
+            </div>
+            <div>
+              <img
+                src={data.landscapeProjectImages![1].fields.file.url}
+                alt=""
+                className="rounded-xl md:h-full object-cover"
+              />
+            </div>
+          </div>
         </main>
       </div>
     </motion.div>
   );
 };
 
-export default BlogBody;
+export default ProjectBody;

@@ -23,8 +23,8 @@ const BlogSection = ({ data }: { data: BlogPost[] }) => {
       style={bgColor}
       className="relative flex flex-col rounded-xl pt-16 px-4 lg:px-10 z-0"
     >
-      <div className="flex justify-end gap-3 pt-6 pr-6 self-end">
-        <a href={`proyectos/${data[currentBlogPost].slug}`}>
+      <div className="absolute top-5 right-5 flex justify-end gap-3">
+        <a href={`blog/${data[currentBlogPost].slug}`}>
           <motion.img
             whileHover={{ scale: 1.3 }}
             src={svgOpen}
@@ -52,7 +52,7 @@ const BlogSection = ({ data }: { data: BlogPost[] }) => {
       </h3>
       <p className="lg:text-xl">{data[currentBlogPost].summary}</p>
 
-      <a href={`/blog/${data[currentBlogPost].slug}`}>
+      <a className="w-32" href={`blog/${data[currentBlogPost].slug}`}>
         <p className="flex flex-row justify-end items-center gap-4 my-6">
           <span className="inline-block w-4 h-4 rounded-full bg-white" /> Leer
           Articulo
