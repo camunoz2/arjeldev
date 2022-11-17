@@ -60,21 +60,38 @@ const HeaderCards = ({ data }: { data: Project[] }) => {
             className="relative flex flex-col rounded-xl py-10 px-0 md:px-4 z-10 shadow-xl"
           >
             <div className="flex justify-end gap-3 pt-6 pr-6 self-end">
-              <a href={`proyectos/${data[currentCard].slug}`}>
+              <a
+                className="relative"
+                href={`proyectos/${data[currentCard].slug}`}
+              >
                 <motion.img
-                  whileHover={{ scale: 1.3 }}
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  transition={{
+                    bounce: 1,
+                    damping: 3,
+                    stiffness: 23,
+                    duration: 0.1,
+                  }}
                   src={svgOpen}
                   width={30}
                   alt="open card"
                 />
               </a>
-              <motion.img
-                onClick={changeCard}
-                whileHover={{ scale: 1.3 }}
-                src={svgClose}
-                width={30}
-                alt="close card"
-              />
+              <div className="relative">
+                <motion.img
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  transition={{
+                    bounce: 1,
+                    damping: 3,
+                    stiffness: 23,
+                    duration: 0.1,
+                  }}
+                  onClick={changeCard}
+                  src={svgClose}
+                  width={30}
+                  alt="close card"
+                />
+              </div>
             </div>
 
             <div className="flex flex-col items-center lg:flex-row gap-8 2xl:gap-24 px-4 xl:px-16">
