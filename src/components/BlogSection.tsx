@@ -50,10 +50,10 @@ const BlogSection = ({ data }: { data: BlogPost[] }) => {
       <h3 className="text-6xl lg:text-8xl text-right font-display font-bold mt-4 mb-12">
         {data[currentBlogPost].title}
       </h3>
-      <p className="lg:text-xl">{data[currentBlogPost].summary}</p>
+      <p className="lg:text-xl md:ml-48">{data[currentBlogPost].summary}</p>
 
-      <a className="w-32" href={`blog/${data[currentBlogPost].slug}`}>
-        <p className="flex flex-row justify-end items-center gap-4 my-6">
+      <a className="flex self-end" href={`blog/${data[currentBlogPost].slug}`}>
+        <p className="flex flex-row justify-end items-center gap-4 my-6 self-end">
           <span className="inline-block w-4 h-4 rounded-full bg-white" /> Leer
           Articulo
         </p>
