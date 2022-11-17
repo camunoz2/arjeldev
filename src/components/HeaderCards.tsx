@@ -99,18 +99,23 @@ const HeaderCards = ({ data }: { data: Project[] }) => {
 
                 <a
                   href={`/proyectos/${data[currentCard].slug}`}
-                  className="flex gap-2 self-end"
+                  className="flex gap-2 self-end items-center relative"
                 >
+                  {/* TODO: Make a pulse animation to btn link */}
                   <motion.div
-                    animate={{ rotate: 360 }}
+                    animate={{
+                      scale: [1, 1.4, 1],
+                      opacity: [0.2, 0.7, 0.2],
+                    }}
                     transition={{
                       repeat: Infinity,
                       repeatType: "loop",
-                      duration: 0.7,
-                      delay: 2,
+                      ease: "anticipate",
+                      duration: 2.1,
                     }}
-                    className="bg-arjelblue w-4 h-4"
+                    className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6 opacity-0"
                   />
+                  <div className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6" />
                   <span className="text-sm text-arjelblue">Ver Proyecto</span>
                 </a>
               </div>
