@@ -40,13 +40,17 @@ const BlogSection = ({ data }: { data: BlogFrontmatter[] }) => {
           alt="close card"
         />
       </div>
-      <div className="absolute left-0 top-0 -z-10 mix-blend-luminosity object-contain">
+      <div className="opacity-25 md:opacity-100 absolute left-0 top-0 -z-10 mix-blend-luminosity object-contain">
         <img src={data[currentBlogPost].featuredImage} alt="some image" />
       </div>
       <h3 className="text-6xl lg:text-8xl text-right font-display font-bold mt-4 mb-12">
         {data[currentBlogPost].title}
       </h3>
-      <p className="rotate-90 absolute top-1/2 left-0">
+      <p className="rotate-0 md:rotate-90 bg-white px-2 rounded-full absolute top-4 left-4 md:top-1/2 md:left-0 flex items-center gap-2">
+        <span
+          style={{ backgroundColor: data[currentBlogPost].cardColor }}
+          className="relative inline-block w-4 h-4 rounded-full"
+        ></span>
         {data[currentBlogPost].publishDate}
       </p>
       <p className="lg:text-xl md:ml-48">{data[currentBlogPost].summary}</p>
