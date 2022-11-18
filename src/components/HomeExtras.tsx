@@ -11,7 +11,7 @@ const HomeExtras = () => {
     >
       <div className="lg:col-span-4 col-span-7">
         <div className="rounded-xl bg-arjelgrey3 h-full flex flex-col justify-center px-12 py-10 md:py-8">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-arjelgrey4">
+          <h2 className="text-4xl md:text-5xl font-bold text-arjelgrey4">
             Sobre Mi
           </h2>
           <p className="text-sm md:text-xl text-arjelgrey2 py-4 max-w-[500px]">

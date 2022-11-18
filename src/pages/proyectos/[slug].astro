@@ -38,12 +38,10 @@ const { Content } = Astro.props.project;
       class={`relative flex flex-col items-center rounded-xl px-4 z-10 shadow-xl pt-12`}
     >
       <img class="mb-10" src={data.featuredImage} alt="" />
-      <h1
-        class="text-white text-4xl md:text-6xl lg:text-8xl font-display font-bold"
-      >
+      <h1 class="text-white text-4xl md:text-6xl lg:text-8xl font-bold">
         {data.title}
       </h1>
-      <p class="text-white font-display lg:text-xl text-sm">
+      <p class="text-white lg:text-xl text-sm">
         {data.subtitle}
       </p>
       <a href="/" class="flex flex-row items-center gap-2 my-6 self-end">

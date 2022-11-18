@@ -42,7 +42,7 @@ const ContactOverlay = ({ close }: Props) => {
           <ProfileImage />
           <div className="flex flex-col">
             <h2 className="text-3xl font-bold">Cristian A. M. Arjel</h2>
-            <p className="text-sm font-display">Front-End / WebDev</p>
+            <p className="text-sm">Front-End / WebDev</p>
           </div>
           <motion.img
             src={svgClose}

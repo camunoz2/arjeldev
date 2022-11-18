@@ -43,7 +43,7 @@ const BlogSection = ({ data }: { data: BlogFrontmatter[] }) => {
       <div className="opacity-25 md:opacity-100 absolute left-0 top-0 -z-10 mix-blend-luminosity object-contain">
         <img src={data[currentBlogPost].featuredImage} alt="some image" />
       </div>
-      <h3 className="text-6xl lg:text-8xl text-right font-display font-bold mt-4 mb-12">
+      <h3 className="text-6xl lg:text-8xl text-right font-bold mt-4 mb-12">
         {data[currentBlogPost].title}
       </h3>
       <p className="rotate-0 md:rotate-90 bg-white px-2 rounded-full absolute top-4 left-4 md:top-1/2 md:left-0 flex items-center gap-2">

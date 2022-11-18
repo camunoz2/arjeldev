@@ -104,13 +104,13 @@ const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
 
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col">
-                  <h1 className="text-5xl lg:text-7xl md:text-6xl xl:text-6xl 2xl:text-8xl text-white font-bold font-display">
+                  <h1 className="text-5xl lg:text-7xl md:text-6xl xl:text-6xl 2xl:text-8xl text-white font-bold">
                     {data[currentCard].title}
                   </h1>
-                  <p className="text-arjelblue font-display md:text-xl xl:text-xl">
+                  <p className="text-arjelblue md:text-xl xl:text-xl">
                     {data[currentCard].subtitle}
                   </p>
-                  <p className="text-arjelblue font-display text-xs md:text-xl xl:text-sm">{`Publicado: ${data[currentCard].publishDate}`}</p>
+                  <p className="text-arjelblue text-xs md:text-xl xl:text-sm">{`Publicado: ${data[currentCard].publishDate}`}</p>
                 </div>
 
                 <p className="md:text-xl">{data[currentCard].summary}</p>

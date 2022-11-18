@@ -36,12 +36,10 @@ const { Content } = Astro.props.post;
       class={`relative flex flex-col items-center rounded-xl px-4 z-10 shadow-xl pt-12`}
     >
       <img class="mb-10" src={data.featuredImage} alt="" />
-      <h1
-        class="text-white text-4xl md:text-6xl lg:text-8xl font-display font-bold"
-      >
+      <h1 class="text-white text-4xl md:text-6xl lg:text-8xl font-bold">
         {data.title}
       </h1>
-      <p class="text-white font-display lg:text-xl text-sm">
+      <p class="text-white lg:text-xl text-sm">
         {data.subtitle}
       </p>
       <a href="/" class="flex flex-row items-center gap-2 my-6 self-end">
@@ -54,7 +52,9 @@ const { Content } = Astro.props.post;
         <aside class="flex flex-row lg:flex-col gap-4"></aside>
       </div>
       <main class="col-span-4 lg:col-span-3">
-        <div class="rounded-xl bg-arjelgrey1 p-4 md:p-12 mb-8 prose max-w-none">
+        <div
+          class="rounded-xl bg-arjelgrey1 p-4 md:p-12 mb-8 prose prose-headings max-w-none"
+        >
           <div class="mb-10"></div>
           <Content />
         </div>

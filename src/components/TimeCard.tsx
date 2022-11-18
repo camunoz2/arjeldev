@@ -30,15 +30,13 @@ const TimeCard = () => {
 
   return (
     <div className="col-span-1 row-span-3 lg:row-span-2 text-center rounded-xl py-4 bg-arjelgrey1 flex flex-col justify-center items-center">
-      <h2 className="text-base md:text-2xl font-display font-bold tracking-tighter">
+      <h2 className="text-base md:text-2xl font-bold tracking-tighter">
         Te tocó:
       </h2>
       <p>{pokemon ? pokemon.name : "NOT FOUND"}</p>
       <div className="py-2">
         <img src={pokemon.sprites && pokemon.sprites.front_default} />
-        <h3 className="uppercase font-bold  font-display text-xl">
-          N~${pokemon.id}
-        </h3>
+        <h3 className="uppercase font-bold  text-xl">N~${pokemon.id}</h3>
         <button
           className="p-2 bg-arjelgrey2 rounded-sm"
           onClick={() => setRandomId()}

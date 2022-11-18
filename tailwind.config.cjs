@@ -16,7 +16,6 @@ module.exports = {
         arjelgradient2: "#BDBEE2",
       },
       fontFamily: {
-        display: ["Gothic A1", "sans-serif"],
         body: ["Poppins", "sans-serif"],
       },
     },
