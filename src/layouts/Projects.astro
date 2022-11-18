@@ -1,0 +1,23 @@
+---
+import Layout from "./Layout.astro";
+import ProjectBody from "../components/ProjectBody";
+import type {MarkdownLayoutProps} from 'astro'
+
+type Props = MarkdownLayoutProps<{
+  title: string
+  subtitle: string
+  slug: string
+  publishDate: string
+  summary: string
+  cardColor: string
+  projectLink: string
+  githubLink: string
+  usedStack: string[]
+}>
+
+const {frontMatter} = Astro.props;
+---
+
+<Layout title="">
+  <ProjectBody data={frontMatter} client:load />
+</Layout>

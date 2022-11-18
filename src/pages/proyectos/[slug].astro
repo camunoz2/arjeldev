@@ -1,30 +1,104 @@
 ---
-import { contentfulClient } from "../../lib/contentful";
-import type { Project } from "../../contentfulTypes";
 import Layout from "../../layouts/Layout.astro";
-import ProjectBody from "../../components/ProjectBody";
+import ProjectLink from "../../components/ProjectLink";
+import UsedStack from "../../components/UsedStack";
 
-interface Props {
-  data: Project;
+interface ProjectFrontmatter {
+  title: string;
+  subtitle: string;
+  slug: string;
+  publishDate: string;
+  summary: string;
+  cardColor: "#51b2d2";
+  projectLink: string;
+  githubLink: string;
+  usedStack: string[];
+  portraitProjectImage: string;
+  landscapeProjectImages: string[];
+  featuredImage: string;
 }
 
-// Generate Projects pages
+// Generate Project pages
 export async function getStaticPaths() {
-  const projectQuery = await contentfulClient.getEntries<Project>({
-    content_type: "project",
-  });
-  const projects = projectQuery.items.map((item) => item.fields);
-  return projects.map((project) => {
+  const allProjects = await Astro.glob<ProjectFrontmatter>(
+    "../../content/projects/*.mdx"
+  );
+  return allProjects.map((project) => {
     return {
-      params: { slug: project.slug },
-      props: { data: project },
+      params: { slug: project.frontmatter.slug },
+      props: project.frontmatter,
     };
   });
 }
 
-const { data }: Props = Astro.props;
+const { slug } = Astro.params;
+const data = Astro.props;
 ---
 
-<Layout title={data.title!}>
-  <ProjectBody data={data} client:load />
+<Layout title={slug as string}>
+  <div>
+    <div class="relative mx-6">
+      <div
+        class="absolute flex items-center justify-center bg-arjelgrey1 rounded-xl w-full h-44 -z-30 -translate-y-4"
+      >
+      </div>
+    </div>
+    <header
+      style={{ backgroundColor: data.cardColor }}
+      class={`relative flex flex-col items-center rounded-xl px-4 z-10 shadow-xl pt-12`}
+    >
+      <img class="mb-10" src={data.featuredImage} alt="" />
+      <h1
+        class="text-white text-4xl md:text-6xl lg:text-8xl font-display font-bold"
+      >
+        {data.title}
+      </h1>
+      <p class="text-white font-display lg:text-xl text-sm">
+        {data.subtitle}
+      </p>
+      <a href="/" class="flex flex-row items-center gap-2 my-6 self-end">
+        <div class="text-white w-4 h-4"></div>
+        <p class="text-white mr-16">Volver</p>
+      </a>
+    </header>
+    <div class="grid grid-cols-4 gap-4 mt-4">
+      <div class="col-span-4 lg:col-span-1">
+        <aside class="flex flex-row lg:flex-col gap-4">
+          <ProjectLink link={data.projectLink} client:load />
+          <ProjectLink isGithub link={data.githubLink} client:load />
+          <UsedStack stack={data.usedStack} client:load />
+        </aside>
+      </div>
+      <main class="col-span-4 lg:col-span-3">
+        <div class="rounded-xl bg-arjelgrey1 p-4 md:p-12 mb-8">
+          <div class="mb-10"></div>
+          <!-- <slot /> -->
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 gap-4">
+          <div class="row-span-1 md:row-span-2">
+            <img
+              src={data.portraitProjectImage}
+              alt=""
+              class="rounded-xl md:h-full object-cover"
+            />
+          </div>
+          <div>
+            <img
+              src={data.landscapeProjectImages[0]}
+              alt=""
+              class="rounded-xl md:h-full object-cover"
+            />
+          </div>
+          <div>
+            <img
+              src={data.landscapeProjectImages[1]}
+              alt=""
+              class="rounded-xl md:h-full object-cover"
+            />
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
 </Layout>

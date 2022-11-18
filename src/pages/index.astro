@@ -1,6 +1,7 @@
 ---
 import type { Project, BlogPost } from "../contentfulTypes";
 import { contentfulClient } from "../lib/contentful";
+import { documentToHtmlString} from "@contentful/rich-text-html-renderer"
 import Layout from "../layouts/Layout.astro";
 import HomeExtras from "../components/HomeExtras";
 import HeaderCards from "../components/HeaderCards";

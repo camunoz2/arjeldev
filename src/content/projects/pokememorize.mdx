@@ -1,0 +1,86 @@
+---
+layout: ../../layouts/Projects.astro
+title: "Pokememorize"
+subtitle: "Juego de cartas de memorice de pokemon"
+slug: "pokememorize"
+publishDate: "08 Nov 2022"
+summary: "A mis hijos les encanta pokemon, por lo tanto la decisión de realizar un proyecto de este tipo ya estaba tomada y ellos son los clientes más exigentes que tengo. Este es un juego hecho en React + Tailwindcss, desarrollado con Vite y publicado en Github como código abierto."
+cardColor: "#51b2d2"
+projectLink: "https://pokememo-jade.vercel.app/"
+githubLink: "https://github.com/camunoz2/pokememo"
+usedStack: ["React", "Tailwindcss", "Typescript"]
+featuredImage: "/images/pokememorize/featured.png"
+portraitProjectImage: "/images/pokememorize/portrait.png"
+landscapeProjectImages:
+  ["/images/pokememorize/landscape1.png", "/images/pokememorize/landscape2.png"]
+---
+
+# Pokememorize
+
+### At least, my kids enjoy this!
+
+A mis hijos les encanta pokemon, por lo tanto la decisión de realizar un proyecto de este tipo ya estaba tomada y ellos son los clientes más exigentes que tengo. Este es un juego hecho en React + Tailwindcss, desarrollado con Vite y publicado en Github como código abierto.
+
+## Desarrollo
+
+Primero debemos instalar nuestras dependencias, en este caso yo utilizé vite, typescript (obviamente)
+
+```
+  npm create vite@latest
+```
+
+Luego agregamos tailwindcss a nuestro proyecto siguiendo los pasos en la [documentación oficial](https://tailwindcss.com/docs/installation)
+
+La lista de pokemons, los sprites y sus nombres los extraje de la pokeapi y realizé el fetching de datos y agregué la respuesta a mi estado.
+
+```
+const getPokemonCards = async (ids: number[]) => {
+  let cards: PokemonCard[] = [];
+  for (const id of ids) {
+    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    let jsonData = await response.json();
+    cards.push({
+      name: jsonData.name,
+      image: jsonData.sprites.front_default,
+      isMatched: false,
+      id: 0,
+    });
+  }
+  return cards;
+};
+```
+
+Una de las partes importantes es la boleana `isMatched` ya que esta permite el renderizado condicional de la carta. Cuando `isMatched === true` , entonces la carta permanece boca arriba.
+
+La otra función importante es el useEffect utilizado para realizar el emparejado de las cartas.
+
+```
+useEffect(() => {
+  if (firstChoice && secondChoice) {
+    setTurn((turn) => turn + 1);
+
+    if (firstChoice.name === secondChoice.name) {
+      matchPairs(firstChoice.name);
+      setTimeout(() => {
+        resetCards();
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        resetCards();
+      }, 1000);
+    }
+  }
+}, [firstChoice, secondChoice]);
+```
+
+En este caso, la función useEffect es llamada cuando cada carta se da vuelta. Si se han dado vuelta dos cartas entonces aumentamos un turno. Y si los nombres coinciden, entonces tenemos un par. Para realizar esta comprobación, utilizé la siguiente ternaria
+
+```
+const cardSelector = (card: PokemonCard) => {
+  firstChoice ? setSecondChoice(card) : setFirstChoice(card);
+};
+```
+
+Espero que les haya gustado el proyecto, es probable que este código esté desactualizado con el proyecto actual en github debido a que lo iré refactorizando con el tiempo.
+
+Saludos!
