@@ -10,13 +10,17 @@ export async function getStaticPaths() {
   return allPost.map((post) => {
     return {
       params: { slug: post.frontmatter.slug },
-      props: post.frontmatter,
+      props: {
+        frontmatter: post.frontmatter,
+        post,
+      },
     };
   });
 }
 
 const { slug } = Astro.params;
-const data = Astro.props;
+const data = Astro.props.frontmatter;
+const { Content } = Astro.props.post;
 ---
 
 <Layout title={slug as string}>
@@ -52,7 +56,7 @@ const data = Astro.props;
       <main class="col-span-4 lg:col-span-3">
         <div class="rounded-xl bg-arjelgrey1 p-4 md:p-12 mb-8">
           <div class="mb-10"></div>
-          <!-- <slot /> -->
+          <Content />
         </div>
       </main>
     </div>
