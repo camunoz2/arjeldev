@@ -39,12 +39,11 @@ Entender como funciona el back es gracias a que NEXTJS tiene una particular mane
 
 El proceso de Auth está delegado a [NextAuth](https://next-auth.js.org/), con 2 providers (Google y Github). Realizar este proceso muy sencillo, primero debes crear el archivo \[...nextauth].ts en /api/auth. Y cargar la siguiente configuración:
 
-```
-import NextAuth from 'next-auth'
-import type { NextAuthOptions } from 'next-auth'
-import GithubProvider from 'next-auth/providers/github'
-import GoogleProvider from 'next-auth/providers/google'
-
+```ts
+import NextAuth from "next-auth";
+import type { NextAuthOptions } from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -58,21 +57,21 @@ export const authOptions: NextAuthOptions = {
     }),
     // ...add more providers here
   ],
-}
+};
 
-export default NextAuth(authOptions)
+export default NextAuth(authOptions);
 ```
 
 Luego debes crear una ruta \_app.tsx junto con tu index.tsx. Dentro de Nextjs este archivo, al ser creado, nos ayuda a persistir layouts y mantener el estado entre las páginas, siendo un lugar perfecto para pasar nuestro provier y tener acceso de esta manera al estado de nuestro usuario y saber si esta autenticado o no.
 
-```
-import type { AppProps } from 'next/app'
-import { SessionProvider } from 'next-auth/react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+```tsx
+import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import '../styles/globals.css'
+import "../styles/globals.css";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 export default function MyApp({
   Component,
@@ -84,7 +83,7 @@ export default function MyApp({
         <Component {...pageProps} />
       </SessionProvider>
     </QueryClientProvider>
-  )
+  );
 }
 ```
 
@@ -92,15 +91,14 @@ Uno de los imports que estoy utilizando es react-query, una librería que nos ay
 
 Ya tenemos el proceso de autenticación, luego, el proceso de autorización el sencillo, solo tenemos que asegurarnos que cualquier ruta que requiera autorización, debe tener el siguiente efecto.
 
-```
-  useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/')
-    }
-  }, [status])
+```ts
+useEffect(() => {
+  if (status === "unauthenticated") {
+    router.push("/");
+  }
+}, [status]);
 
-
-  if (typeof window !== undefined && loading) return null
+if (typeof window !== undefined && loading) return null;
 ```
 
 En este caso, el objeto status, proviene del hook proporcionado por NextAuth, el que puede entregar 3 estados distintos. En este caso si el usuario no esta logeado, lo mandamos al index ('/') y para evitar un pestañazo en la app, podemos revisar si el objeto window está o no definido y devolver null, esto evitará que se renderize el componente que está más abajo.
@@ -113,57 +111,57 @@ Pasemos a trabajar con la base de datos. En mi caso elejí una base de datos de 
 
 Configuré 3 api routes en NextJs encargadas de agregar, obtener la lista y eliminar un elemento. Para agregar
 
-```
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { redis } from '../../lib/redisClient'
+```ts
+import type { NextApiRequest, NextApiResponse } from "next";
+import { redis } from "../../lib/redisClient";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const value = req.body.todoText
-  const user = req.body.user
-  const index = req.body.todoIndex
+  const value = req.body.todoText;
+  const user = req.body.user;
+  const index = req.body.todoIndex;
 
-  const key = user + ':' + index
+  const key = user + ":" + index;
 
-  const push = await redis.lpush(key, value)
+  const push = await redis.lpush(key, value);
 
-  res.status(200).end()
-}
+  res.status(200).end();
+};
 ```
 
 Para obtener la lista
 
-```
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { redis } from '../../lib/redisClient'
+```ts
+import type { NextApiRequest, NextApiResponse } from "next";
+import { redis } from "../../lib/redisClient";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const user = req.body.user
-  const listIndex = req.body.listIndex
+  const user = req.body.user;
+  const listIndex = req.body.listIndex;
 
-  const morningList = user + ':' + listIndex
+  const morningList = user + ":" + listIndex;
 
-  const list = await redis.lrange(morningList, 0, 10)
-  res.status(200).json(list)
-}
+  const list = await redis.lrange(morningList, 0, 10);
+  res.status(200).json(list);
+};
 ```
 
 Y para eliminar el objeto
 
-```
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { redis } from '../../lib/redisClient'
+```ts
+import type { NextApiRequest, NextApiResponse } from "next";
+import { redis } from "../../lib/redisClient";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const value = req.body.todoText
-  const user = req.body.user
-  const index = req.body.todoIndex
+  const value = req.body.todoText;
+  const user = req.body.user;
+  const index = req.body.todoIndex;
 
-  const key = user + ':' + index
+  const key = user + ":" + index;
 
-  await redis.lrem(key, 1, value)
+  await redis.lrem(key, 1, value);
 
-  res.status(200).end()
-}
+  res.status(200).end();
+};
 ```
 
 Estos elementos interactuan con el cliente de redis mediante sus metodos, push, lrange y lrem, que son algunos comandos que podemos encontrar en la [documentación de Redis](https://redis.io/commands/)

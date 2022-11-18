@@ -24,7 +24,7 @@ const { Content } = Astro.props.post;
 ---
 
 <Layout title={slug as string}>
-  <div>
+  <div class="max-w-[1024px] mx-auto">
     <div class="relative mx-6">
       <div
         class="absolute flex items-center justify-center bg-arjelgrey1 rounded-xl w-full h-44 -z-30 -translate-y-4"
@@ -54,7 +54,7 @@ const { Content } = Astro.props.post;
         <aside class="flex flex-row lg:flex-col gap-4"></aside>
       </div>
       <main class="col-span-4 lg:col-span-3">
-        <div class="rounded-xl bg-arjelgrey1 p-4 md:p-12 mb-8">
+        <div class="rounded-xl bg-arjelgrey1 p-4 md:p-12 mb-8 prose max-w-none">
           <div class="mb-10"></div>
           <Content />
         </div>

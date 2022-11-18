@@ -17,6 +17,7 @@
     "@contentful/rich-text-html-renderer": "^15.13.1",
     "@fontsource/gothic-a1": "^4.5.9",
     "@fontsource/poppins": "^4.5.10",
+    "@tailwindcss/typography": "^0.5.8",
     "@types/marked": "^4.0.7",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
