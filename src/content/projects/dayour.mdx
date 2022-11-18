@@ -1,0 +1,176 @@
+---
+layout: ../../layouts/Projects.astro
+title: "Dayour"
+subtitle: "Zen-minimalist day planner for the busy hipster."
+slug: "dayourapp"
+publishDate: "11 Sep 2022"
+summary: "Es una todo app, que divide el día en 4 momentos y puedes escribir que hacer en cada uno de esos momentos. Tiene animaciones hechas en Rive que reaccionan a la respuesta obtenida por el servidor. La base de datos esta en Redis, con una implementación de listas."
+cardColor: "#aa5b8f"
+projectLink: "https://dayour-app.vercel.app/"
+githubLink: "https://github.com/camunoz2/pokememo"
+usedStack: ["NextJs", "Next-Auth", "Tanstack-Query", "Redis"]
+featuredImage: "/images/projects/dayour/featured.png"
+portraitProjectImage: "/images/projects/dayour/portrait.png"
+landscapeProjectImages:
+  [
+    "/images/projects/dayour/landscape1.png",
+    "/images/projects/dayour/landscape2.png",
+  ]
+---
+
+# Dayour.app
+
+## Yo sé que estás por ahí, hombre simple del siglo XXI.
+
+Es una todo app, que divide el día en 4 momentos y puedes escribir que hacer en cada uno de esos momentos. Tiene animaciones hechas en Rive que reaccionan a la respuesta obtenida por el servidor. La base de datos esta en Redis, con una implementación de listas.
+
+### ¿Qué problema soluciona mi aplicación?
+
+La verdad, es que ninguno. Ya existen mejores alternativas en el mercado, aplicaciones gratuitas que hacen todo lo que hace esta app, pero 10 veces mejor, más rápido y más encima son multiplataformas, nadie necesita otra app tipo TODO, pero… esta es mía, y más encima la ocupo. No hay satisfacción más grande que ocupar software hecho por ti, y esa magia que es provocada al pasar de una servilleta, a una maqueta en XD a un lenguaje de programación es impagable. La UX es máxima cuando el producto es elaborado por uno mismo, debe ser la misma satisfacción que sienten las madres a ver a sus hijos bailar cuando están en primero básico, vamos, si la verdad es no son bailarines profesionales que digamos, pero ahí están, casi con lágrimas en los ojos al ver como los niños saltan en la pista de baile.
+
+Esta webapp fue hecha con NEXTJS, la verdad nunca lo había ocupado, el único framework que había utilizado antes era GatsbyJS y NEXT se sintió muy rápido enseguida. Además, ocupé typescript para este proyecto, lo que me obligó a utilizar buenas prácticas en mi código todo el tiempo, a cuidar mis variables y a conocer que un evento onChange es de tipo `React.ChangeEventHandler<HTMLInputElement>`
+
+Además, gracias a este proyecto hice mi primera contribución en Github en el repo de [Next-Auth](https://next-auth.js.org) por ahí pueden ver mi commit a la documentación del Get Started. Además de utilizar Auth en este proyecto, aprendí a persistir los datos de usuarios, es decir, que si ustedes hacen login, podrán acceder a sus propios datos, algo que elevó aun más mi confianza para comenzar a producir apps fullstack y salir de mi zona de confort de ser exclusivamente FrontEnd.
+
+Entender como funciona el back es gracias a que NEXTJS tiene una particular manera de introducirnos en este maravilloso mundo con las rutas /api.
+
+## Desarrollo
+
+### Autenticación
+
+El proceso de Auth está delegado a [NextAuth](https://next-auth.js.org/), con 2 providers (Google y Github). Realizar este proceso muy sencillo, primero debes crear el archivo \[...nextauth].ts en /api/auth. Y cargar la siguiente configuración:
+
+```
+import NextAuth from 'next-auth'
+import type { NextAuthOptions } from 'next-auth'
+import GithubProvider from 'next-auth/providers/github'
+import GoogleProvider from 'next-auth/providers/google'
+
+
+export const authOptions: NextAuthOptions = {
+  providers: [
+    GithubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+    }),
+    // ...add more providers here
+  ],
+}
+
+export default NextAuth(authOptions)
+```
+
+Luego debes crear una ruta \_app.tsx junto con tu index.tsx. Dentro de Nextjs este archivo, al ser creado, nos ayuda a persistir layouts y mantener el estado entre las páginas, siendo un lugar perfecto para pasar nuestro provier y tener acceso de esta manera al estado de nuestro usuario y saber si esta autenticado o no.
+
+```
+import type { AppProps } from 'next/app'
+import { SessionProvider } from 'next-auth/react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+import '../styles/globals.css'
+
+const queryClient = new QueryClient()
+
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider session={session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+    </QueryClientProvider>
+  )
+}
+```
+
+Uno de los imports que estoy utilizando es react-query, una librería que nos ayudará un montón con el fetching de datos, la revalidación y el cache.
+
+Ya tenemos el proceso de autenticación, luego, el proceso de autorización el sencillo, solo tenemos que asegurarnos que cualquier ruta que requiera autorización, debe tener el siguiente efecto.
+
+```
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/')
+    }
+  }, [status])
+
+
+  if (typeof window !== undefined && loading) return null
+```
+
+En este caso, el objeto status, proviene del hook proporcionado por NextAuth, el que puede entregar 3 estados distintos. En este caso si el usuario no esta logeado, lo mandamos al index ('/') y para evitar un pestañazo en la app, podemos revisar si el objeto window está o no definido y devolver null, esto evitará que se renderize el componente que está más abajo.
+
+Ahora ya tenemos listos las 2 partes del Auth, que son: La autorización y la autenticación.
+
+### Procesos CRUD
+
+Pasemos a trabajar con la base de datos. En mi caso elejí una base de datos de llave:valor (o KV) llamada Redis. Yo la ocupe con un SaaS llamada [Upstash](https://upstash.com/) Lo que me permite utilizar de manera gratuita Redis.
+
+Configuré 3 api routes en NextJs encargadas de agregar, obtener la lista y eliminar un elemento. Para agregar
+
+```
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { redis } from '../../lib/redisClient'
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const value = req.body.todoText
+  const user = req.body.user
+  const index = req.body.todoIndex
+
+  const key = user + ':' + index
+
+  const push = await redis.lpush(key, value)
+
+  res.status(200).end()
+}
+```
+
+Para obtener la lista
+
+```
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { redis } from '../../lib/redisClient'
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const user = req.body.user
+  const listIndex = req.body.listIndex
+
+  const morningList = user + ':' + listIndex
+
+  const list = await redis.lrange(morningList, 0, 10)
+  res.status(200).json(list)
+}
+```
+
+Y para eliminar el objeto
+
+```
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { redis } from '../../lib/redisClient'
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const value = req.body.todoText
+  const user = req.body.user
+  const index = req.body.todoIndex
+
+  const key = user + ':' + index
+
+  await redis.lrem(key, 1, value)
+
+  res.status(200).end()
+}
+```
+
+Estos elementos interactuan con el cliente de redis mediante sus metodos, push, lrange y lrem, que son algunos comandos que podemos encontrar en la [documentación de Redis](https://redis.io/commands/)
+
+Luego solo tenemos que llamar a estos API routes en nuestra app. En mi caso lo hice con la API fetch y para cachear estos datos utilizé react-query.
+
+Puedes revisar mi REPO para ver todos los detalles.
+
+Saludos!

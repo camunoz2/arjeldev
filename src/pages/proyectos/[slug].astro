@@ -2,21 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import ProjectLink from "../../components/ProjectLink";
 import UsedStack from "../../components/UsedStack";
-
-interface ProjectFrontmatter {
-  title: string;
-  subtitle: string;
-  slug: string;
-  publishDate: string;
-  summary: string;
-  cardColor: "#51b2d2";
-  projectLink: string;
-  githubLink: string;
-  usedStack: string[];
-  portraitProjectImage: string;
-  landscapeProjectImages: string[];
-  featuredImage: string;
-}
+import type { ProjectFrontmatter } from "../../customTypes";
 
 // Generate Project pages
 export async function getStaticPaths() {

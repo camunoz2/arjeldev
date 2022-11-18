@@ -1,31 +1,60 @@
 ---
-import { contentfulClient } from "../../lib/contentful";
-import type { BlogPost } from "../../contentfulTypes";
 import Layout from "../../layouts/Layout.astro";
-import BlogBody from "../../components/BlogBody";
+import type { BlogFrontmatter } from "../../customTypes";
 
-interface Props {
-  data: BlogPost;
-}
-
-// Generate Blog pages
+// Generate Project pages
 export async function getStaticPaths() {
-  const blogQuery = await contentfulClient.getEntries<BlogPost>({
-    content_type: "blogPost",
-  });
-  const posts = blogQuery.items.map((post) => post.fields);
-
-  return posts.map((post) => {
+  const allPost = await Astro.glob<BlogFrontmatter>(
+    "../../content/posts/*.mdx"
+  );
+  return allPost.map((post) => {
     return {
-      params: { slug: post.slug },
-      props: { data: post },
+      params: { slug: post.frontmatter.slug },
+      props: post.frontmatter,
     };
   });
 }
 
-const { data }: Props = Astro.props;
+const { slug } = Astro.params;
+const data = Astro.props;
 ---
 
-<Layout title={data.title!}>
-  <BlogBody data={data} client:load />
+<Layout title={slug as string}>
+  <div>
+    <div class="relative mx-6">
+      <div
+        class="absolute flex items-center justify-center bg-arjelgrey1 rounded-xl w-full h-44 -z-30 -translate-y-4"
+      >
+      </div>
+    </div>
+    <header
+      style={{ backgroundColor: data.cardColor }}
+      class={`relative flex flex-col items-center rounded-xl px-4 z-10 shadow-xl pt-12`}
+    >
+      <img class="mb-10" src={data.featuredImage} alt="" />
+      <h1
+        class="text-white text-4xl md:text-6xl lg:text-8xl font-display font-bold"
+      >
+        {data.title}
+      </h1>
+      <p class="text-white font-display lg:text-xl text-sm">
+        {data.subtitle}
+      </p>
+      <a href="/" class="flex flex-row items-center gap-2 my-6 self-end">
+        <div class="text-white w-4 h-4"></div>
+        <p class="text-white mr-16">Volver</p>
+      </a>
+    </header>
+    <div class="grid grid-cols-4 gap-4 mt-4">
+      <div class="col-span-4 lg:col-span-1">
+        <aside class="flex flex-row lg:flex-col gap-4"></aside>
+      </div>
+      <main class="col-span-4 lg:col-span-3">
+        <div class="rounded-xl bg-arjelgrey1 p-4 md:p-12 mb-8">
+          <div class="mb-10"></div>
+          <!-- <slot /> -->
+        </div>
+      </main>
+    </div>
+  </div>
 </Layout>

@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import type { BlogPost } from "../contentfulTypes";
+import type { BlogFrontmatter } from "../customTypes";
 import svgClose from "../images/SvgClose.svg";
 import svgOpen from "../images/SvgOpen.svg";
 
-const BlogSection = ({ data }: { data: BlogPost[] }) => {
+const BlogSection = ({ data }: { data: BlogFrontmatter[] }) => {
   const [currentBlogPost, setCurrentBlogPost] = useState(0);
 
   const changeCard = () => {
@@ -41,10 +41,7 @@ const BlogSection = ({ data }: { data: BlogPost[] }) => {
         />
       </div>
       <div className="absolute left-0 top-0 -z-10 mix-blend-luminosity object-contain">
-        <img
-          src={data[currentBlogPost].featuredImage!.fields.file.url}
-          alt="some image"
-        />
+        <img src={data[currentBlogPost].featuredImage} alt="some image" />
       </div>
       <h3 className="text-6xl lg:text-8xl text-right font-display font-bold mt-4 mb-12">
         {data[currentBlogPost].title}

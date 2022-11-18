@@ -1,44 +1,36 @@
 ---
-import type { Project, BlogPost } from "../contentfulTypes";
-import { contentfulClient } from "../lib/contentful";
-import { documentToHtmlString} from "@contentful/rich-text-html-renderer"
 import Layout from "../layouts/Layout.astro";
-import HomeExtras from "../components/HomeExtras";
 import HeaderCards from "../components/HeaderCards";
+import HomeExtras from "../components/HomeExtras";
 import BlogSection from "../components/BlogSection";
 import ArjelFixed from "../components/ArjelFixed";
+import type { BlogFrontmatter, ProjectFrontmatter } from "../customTypes";
 
-const projectQuery = await contentfulClient.getEntries<Project>({
-  content_type: "project",
-});
+const projectQuery = await Astro.glob<ProjectFrontmatter>(
+  "../content/projects/*.mdx"
+);
+const blogQuery = await Astro.glob<BlogFrontmatter>("../content/posts/*.mdx");
 
-const blogQuery = await contentfulClient.getEntries<BlogPost>({
-  content_type: "blogPost",
-});
-
-const projects = projectQuery.items.map((item) => {
+const projects = projectQuery.map((project) => {
   return {
-    title: item.fields.title,
-    body: item.fields.body,
-    cardColor: item.fields.cardColor,
-    featuredImage: item.fields.featuredImage,
-    portraitProjectImage: item.fields.portraitProjectImage,
-    publishDate: new Date(item.fields.publishDate!).toLocaleDateString("es-CL"),
-    slug: item.fields.slug,
-    subtitle: item.fields.subtitle,
-    summary: item.fields.summary,
+    title: project.frontmatter.title,
+    cardColor: project.frontmatter.cardColor,
+    featuredImage: project.frontmatter.featuredImage,
+    publishDate: project.frontmatter.publishDate,
+    slug: project.frontmatter.slug,
+    subtitle: project.frontmatter.subtitle,
+    summary: project.frontmatter.summary,
   };
 });
 
-const posts = blogQuery.items.map((item) => {
+const posts = blogQuery.map((post) => {
   return {
-    title: item.fields.title,
-    slug: item.fields.slug,
-    publishDate: new Date(item.fields.publishDate!).toLocaleDateString("es-CL"),
-    featuredImage: item.fields.featuredImage,
-    cardColor: item.fields.cardColor,
-    body: item.fields.body,
-    summary: item.fields.summary,
+    title: post.frontmatter.title,
+    cardColor: post.frontmatter.cardColor,
+    featuredImage: post.frontmatter.featuredImage,
+    publishDate: post.frontmatter.publishDate,
+    slug: post.frontmatter.slug,
+    summary: post.frontmatter.summary,
   };
 });
 ---

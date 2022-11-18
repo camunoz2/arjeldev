@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import type { Project } from "../contentfulTypes";
+
 import { useState } from "react";
+import type { ProjectFrontmatter } from "../customTypes";
 import svgClose from "../images/SvgClose.svg";
 import svgOpen from "../images/SvgOpen.svg";
 
-const HeaderCards = ({ data }: { data: Project[] }) => {
+const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
   const [currentCard, setCurrentCard] = useState(0);
 
   const cardVariantAnim = {
@@ -97,7 +98,7 @@ const HeaderCards = ({ data }: { data: Project[] }) => {
             <div className="flex flex-col items-center lg:flex-row gap-8 2xl:gap-24 px-4 xl:px-16">
               <img
                 className="object-contain mix-blend-luminosity w-[300px] shrink-0 -z-10"
-                src={data[currentCard].featuredImage!.fields.file.url}
+                src={data[currentCard].featuredImage}
                 alt="2d render for my blog post"
               />
 
