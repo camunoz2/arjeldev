@@ -1,8 +1,14 @@
-import * as React from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const DarkModeButton = () => {
-  const [darkMode, setDarkMode] = React.useState(false);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    if (theme === "light") {
+      document.querySelector("html")?.classList.remove("dark");
+    } else document.querySelector("html")?.classList.add("dark");
+  }, [theme]);
 
   const variants = {
     sun: {
@@ -21,17 +27,21 @@ const DarkModeButton = () => {
     },
   };
 
+  function handleTheme() {
+    setTheme(theme === "light" ? "dark" : "light");
+  }
+
   return (
     <motion.div
       variants={variants}
       initial="sunnysky"
-      animate={darkMode ? "darksky" : "sunnysky"}
+      animate={theme === "dark" ? "darksky" : "sunnysky"}
       className="col-span-1 row-span-2 lg:row-span-1 flex justify-center items-center rounded-xl overflow-hidden"
     >
-      <div onClick={() => setDarkMode(!darkMode)}>
+      <div onClick={handleTheme}>
         <motion.div
           variants={variants}
-          animate={darkMode ? "moon" : "sun"}
+          animate={theme === "dark" ? "moon" : "sun"}
           initial="sun"
           className="rounded-full w-16 h-16 hover:cursor-pointer z-10"
         />
