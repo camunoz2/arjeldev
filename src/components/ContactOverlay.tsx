@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import ProfileImage from "./ProfileImage";
 import svgClose from "../images/SvgClose.svg";
-import type React from "react";
 
 interface Props {
   close: () => void;
@@ -19,8 +18,9 @@ const ContactOverlay = ({ close }: Props) => {
     },
     hidden: {
       opacity: 0,
-      y: -200,
+      y: -80,
       transition: {
+        duration: 0.6,
         when: "afterChildren",
       },
     },

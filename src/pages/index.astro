@@ -4,12 +4,9 @@ import HeaderCards from "../components/HeaderCards";
 import HomeExtras from "../components/HomeExtras";
 import BlogSection from "../components/BlogSection";
 import ArjelFixed from "../components/ArjelFixed";
-import type { BlogFrontmatter, ProjectFrontmatter } from "../customTypes";
 
-const projectQuery = await Astro.glob<ProjectFrontmatter>(
-  "../content/projects/*.mdx"
-);
-const blogQuery = await Astro.glob<BlogFrontmatter>("../content/posts/*.mdx");
+const projectQuery = await Astro.glob("../content/projects/*.mdx");
+const blogQuery = await Astro.glob("../content/posts/*.mdx");
 
 const projects = projectQuery.map((project) => {
   return {

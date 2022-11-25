@@ -13,7 +13,7 @@ const ContactButton = () => {
       >
         Contacto
       </div>
-      <AnimatePresence>
+      <AnimatePresence mode="popLayout">
         {isOpen && <ContactOverlay close={() => setIsOpen(false)} />}
       </AnimatePresence>
     </>
