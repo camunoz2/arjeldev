@@ -60,13 +60,23 @@ const ContactOverlay = ({ close }: Props) => {
           </p>
         </div>
 
-        <div className="p-6 bg-arjelgrey3 rounded-xl col-span-3 md:col-span-1 row-span-1 text-center flex items-center justify-center text-base md:text-xl lg:text-2xl text-white">
+        <a
+          href="https://wa.me/56946729489"
+          target="_blank"
+          rel="noopener"
+          className="p-6 bg-arjelgrey3 rounded-xl col-span-3 md:col-span-1 row-span-1 text-center flex items-center justify-center text-base md:text-xl lg:text-2xl text-white hover:cursor-pointer"
+        >
           Whatsapp
-        </div>
+        </a>
 
-        <div className="p-6 bg-arjelgrey3 rounded-xl col-span-3 md:col-span-1 row-span-1 text-center flex items-center justify-center text-base md:text-xl lg:text-2xl text-white">
-          Instagram
-        </div>
+        <a
+          href="https://twitter.com/arjeldev"
+          target="_blank"
+          rel="noopener"
+          className="p-6 bg-arjelgrey3 rounded-xl col-span-3 md:col-span-1 row-span-1 text-center flex items-center justify-center text-base md:text-xl lg:text-2xl text-white"
+        >
+          Twitter
+        </a>
       </motion.div>
     </motion.div>
   );
