@@ -19,6 +19,9 @@ module.exports = {
       fontFamily: {
         body: ["Poppins", "sans-serif"],
       },
+      backgroundImage: {
+        websites: "url('/images/websites.jpg')",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
