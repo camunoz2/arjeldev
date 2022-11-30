@@ -1,9 +1,9 @@
 ---
 title: "Pokememorize"
-subtitle: "Juego de cartas de memorice de pokemon"
+subtitle: "A memo pokecard game!"
 slug: "pokememorize"
 publishDate: "08 Nov 2022"
-summary: "A mis hijos les encanta pokemon, por lo tanto la decisión de realizar un proyecto de este tipo ya estaba tomada y ellos son los clientes más exigentes que tengo. Este es un juego hecho en React + Tailwindcss, desarrollado con Vite y publicado en Github como código abierto."
+summary: "My kids love to play pokemon, then the desicion was already taken, i need to develop some kind of game for them, and they are the most ambitious clients. It's made in React + Tailwindcss, scaffolded with Vite and served on vercel."
 cardColor: "#51b2d2"
 projectLink: "https://pokememo-jade.vercel.app/"
 githubLink: "https://github.com/camunoz2/pokememo"
@@ -21,19 +21,19 @@ landscapeProjectImages:
 
 ### At least, my kids enjoy this!
 
-A mis hijos les encanta pokemon, por lo tanto la decisión de realizar un proyecto de este tipo ya estaba tomada y ellos son los clientes más exigentes que tengo. Este es un juego hecho en React + Tailwindcss, desarrollado con Vite y publicado en Github como código abierto.
+My kids love to play pokemon, then the desicion was already taken, i need to develop some kind of game for them, and they are the most ambitious clients. It's made in React + Tailwindcss, scaffolded with Vite and served on vercel.
 
-## Desarrollo
+## Development
 
-Primero debemos instalar nuestras dependencias, en este caso yo utilizé vite, typescript (obviamente)
+First we must install the dependencies with vite and typescript (obviously)
 
 ```
   npm create vite@latest
 ```
 
-Luego agregamos tailwindcss a nuestro proyecto siguiendo los pasos en la [documentación oficial](https://tailwindcss.com/docs/installation)
+Then add tailwindcss to our project following its [docs](https://tailwindcss.com/docs/installation)
 
-La lista de pokemons, los sprites y sus nombres los extraje de la pokeapi y realizé el fetching de datos y agregué la respuesta a mi estado.
+The pokemon list, names and sprites, were obtained trough the [pokeapi](https://pokeapi.co/).
 
 ```ts
 const getPokemonCards = async (ids: number[]) => {
@@ -52,9 +52,9 @@ const getPokemonCards = async (ids: number[]) => {
 };
 ```
 
-Una de las partes importantes es la boleana `isMatched` ya que esta permite el renderizado condicional de la carta. Cuando `isMatched === true` , entonces la carta permanece boca arriba.
+One of the important parts in this code is the boolean `isMatched` because this allows the conditional render of the card. When `isMatched === true` , then the card is facing up.
 
-La otra función importante es el useEffect utilizado para realizar el emparejado de las cartas.
+The other important function is the useEffect that allows tha pairing of the cards.
 
 ```ts
 useEffect(() => {
@@ -75,7 +75,7 @@ useEffect(() => {
 }, [firstChoice, secondChoice]);
 ```
 
-En este caso, la función useEffect es llamada cuando cada carta se da vuelta. Si se han dado vuelta dos cartas entonces aumentamos un turno. Y si los nombres coinciden, entonces tenemos un par. Para realizar esta comprobación, utilizé la siguiente ternaria
+In this particullar case, useEffect is called when we already have a secondTurn. If both cards are facing up, then we add a turn. When the names are equal, we have a matched pair. For this task we can use a ternary operation:
 
 ```ts
 const cardSelector = (card: PokemonCard) => {
@@ -83,6 +83,7 @@ const cardSelector = (card: PokemonCard) => {
 };
 ```
 
-Espero que les haya gustado el proyecto, es probable que este código esté desactualizado con el proyecto actual en github debido a que lo iré refactorizando con el tiempo.
+I hope you enjoyed the project 😊
+Feel free to reach me on twitter at [@arjeldev](https://twitter.com/arjeldev)
 
-Saludos!
+See ya!
