@@ -65,7 +65,20 @@ const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
         </div>
       </motion.div>
 
-      <header>
+      <header className="relative">
+        <div className="flex gap-3 rotate-90 absolute bottom-20 -left-16">
+          {data.map((item, index) => {
+            return (
+              <div
+                key={item.slug}
+                onClick={() => setCurrentCard(index)}
+                className={`${
+                  currentCard === index ? "bg-slate-500" : "bg-slate-200"
+                } w-6 h-2 rounded-full  hover:cursor-pointer hover:bg-slate-500`}
+              />
+            );
+          })}
+        </div>
         <AnimatePresence mode="popLayout">
           <motion.div
             layout
