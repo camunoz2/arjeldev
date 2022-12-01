@@ -20,7 +20,7 @@ module.exports = {
         body: ["Poppins", "sans-serif"],
       },
       backgroundImage: {
-        websites: "url('/images/websites.jpg')",
+        websites: "url('/images/websites.webp')",
       },
     },
   },

@@ -1,4 +1,4 @@
-import image from "../images/profile.jpg";
+import image from "../images/profile.webp";
 import { motion } from "framer-motion";
 
 const ProfileImage = ({ widget = false }) => {

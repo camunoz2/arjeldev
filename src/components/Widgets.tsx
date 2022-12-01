@@ -1,8 +1,7 @@
-import Pokeball from "./Pokeball";
 import FrontEndFolio from "./FrontEndFolio";
 import ProfileImage from "./ProfileImage";
-import dribbble from "../images/dribbble.png";
-import codepen from "../images/codepen.png";
+import dribbble from "../images/dribbble.webp";
+import codepen from "../images/codepen.webp";
 
 const Widgets = () => {
   return (
