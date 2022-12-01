@@ -12,12 +12,12 @@ const HomeExtras = () => {
       <div className="lg:col-span-4 col-span-7">
         <div className="rounded-xl bg-arjelgrey3 h-full flex flex-col justify-center px-12 py-10 md:py-8">
           <h2 className="text-4xl md:text-5xl font-bold text-arjelgrey4">
-            Sobre Mi
+            About me!
           </h2>
           <p className="text-sm md:text-xl text-arjelgrey2 py-4 max-w-[500px]">
-            Soy Cristian M. Arjel y me especializo en el Front-End. El foco
-            principal de mis proyectos está en las soluciones personalizadas,
-            interfaces modernas, con personalidad, pero sobretodo, eficientes.
+            I'm Cristian M. Arjel and I specialize in Front-End development. My
+            focus is on creating personalized, modern, and efficient web
+            applications with a unique personality that users will enjoy.
           </p>
         </div>
       </div>
