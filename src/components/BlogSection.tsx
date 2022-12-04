@@ -109,7 +109,7 @@ const BlogSection = ({ data }: { data: BlogFrontmatter[] }) => {
               className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6 opacity-0"
             />
             <div className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6" />
-            <span className="text-sm text-arjelblue"> Leer Articulo</span>
+            <span className="text-sm text-arjelblue"> Read Post</span>
           </a>
         </article>
       </motion.div>
