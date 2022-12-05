@@ -166,7 +166,7 @@ const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
                       className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6 opacity-0"
                     />
                     <div className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6" />
-                    <span className="text-sm text-arjelblue">Ver Proyecto</span>
+                    <span className="text-sm text-arjelblue">Let's go!</span>
                   </a>
                 </div>
               </div>
