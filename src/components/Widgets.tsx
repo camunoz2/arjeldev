@@ -10,8 +10,6 @@ const Widgets = () => {
       <div className="py-4 px-4 col-start-2 col-span-1 row-start-1 row-span-3 lg:col-start-3 lg:row-start-1 lg:col-span-1 lg:row-span-2 flex rounded-xl items-center overflow-hidden bg-slate-200 justify-around lg:flex-col flex-row">
         <a
           href="https://dribbble.com/arjeldev"
-          target="_blank"
-          rel="noopener"
           className="flex flex-col items-center gap-2"
         >
           <img src={dribbble} alt="" />
