@@ -91,7 +91,7 @@ const BlogSection = ({ data }: { data: BlogFrontmatter[] }) => {
           </p>
           <p className="lg:text-xl md:ml-48">{data[currentBlogPost].summary}</p>
 
-          <div className="flex gap-2 self-end items-center">
+          <div className="flex self-end items-center gap-8">
             <a
               className="flex gap-2 items-center relative hover:underline underline-offset-2 text-arjelblue"
               href={`blog/${data[currentBlogPost].slug}`}
@@ -114,9 +114,9 @@ const BlogSection = ({ data }: { data: BlogFrontmatter[] }) => {
             </a>
             <a
               href="/blog/allposts"
-              className="hover:underline underline-offset-2 text-arjelblue"
+              className="hover:underline underline-offset-2 text-arjelblue text-sm"
             >
-              <span className="text-sm "> All posts</span>
+              All posts
             </a>
           </div>
         </article>
