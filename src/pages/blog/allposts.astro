@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const blogQuery = await Astro.glob("../../content/posts/*.mdx");
+
+const posts = blogQuery.map((post) => {
+  return {
+    title: post.frontmatter.title,
+    cardColor: post.frontmatter.cardColor,
+    featuredImage: post.frontmatter.featuredImage,
+    publishDate: post.frontmatter.publishDate,
+    slug: post.frontmatter.slug,
+    summary: post.frontmatter.summary,
+  };
+});
+
+const { slug } = Astro.params;
+---
+
+<Layout title={slug as string}>
+  <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    {
+      posts.map((post) => (
+        <a
+          href={`/blog/${post.slug}`}
+          style={{ backgroundColor: post.cardColor }}
+          class="flex flex-col pt-16 pb-12 px-4 rounded-md overflow-hidden relative z-0 hover:shadow-2xl transition-all"
+        >
+          <h2 class="text-4xl font-bold mb-6">{post.title}</h2>
+          <p class="text-xl">{post.summary}</p>
+          <img
+            class="absolute top-0 right-0 w-40 -z-10 mix-blend-luminosity opacity-50"
+            src={post.featuredImage}
+            alt=""
+          />
+        </a>
+      ))
+    }
+  </div>
+</Layout>

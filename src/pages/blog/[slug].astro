@@ -42,10 +42,19 @@ const { Content } = Astro.props.post;
       <p class="text-white lg:text-xl text-sm">
         {data.subtitle}
       </p>
-      <a href="/" class="flex flex-row items-center gap-2 my-6 self-end">
-        <div class="text-white w-4 h-4"></div>
-        <p class="text-white mr-16">Back</p>
-      </a>
+      <div class="flex gap-1 items-center">
+        <a href="/" class="flex flex-row items-center gap-2 my-6 self-end">
+          <div class="text-white w-4 h-4"></div>
+          <p class="text-white mr-16 hover:underline">Home</p>
+        </a>
+        <a
+          href="/blog/allposts"
+          class="flex flex-row items-center gap-2 my-6 self-end"
+        >
+          <div class="text-white w-4 h-4"></div>
+          <p class="text-white mr-16 hover:underline">All Posts</p>
+        </a>
+      </div>
     </header>
     <div class="grid grid-cols-4 gap-4 mt-4">
       <div class="col-span-4 lg:col-span-1">

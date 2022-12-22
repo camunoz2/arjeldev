@@ -91,26 +91,34 @@ const BlogSection = ({ data }: { data: BlogFrontmatter[] }) => {
           </p>
           <p className="lg:text-xl md:ml-48">{data[currentBlogPost].summary}</p>
 
-          <a
-            className="flex gap-2 self-end items-center relative"
-            href={`blog/${data[currentBlogPost].slug}`}
-          >
-            <motion.div
-              animate={{
-                scale: [1, 1.4, 1],
-                opacity: [0.2, 0.7, 0.2],
-              }}
-              transition={{
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "anticipate",
-                duration: 2.1,
-              }}
-              className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6 opacity-0"
-            />
-            <div className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6" />
-            <span className="text-sm text-arjelblue"> Read Post</span>
-          </a>
+          <div className="flex gap-2 self-end items-center">
+            <a
+              className="flex gap-2 items-center relative hover:underline underline-offset-2 text-arjelblue"
+              href={`blog/${data[currentBlogPost].slug}`}
+            >
+              <motion.div
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.2, 0.7, 0.2],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "anticipate",
+                  duration: 2.1,
+                }}
+                className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6 opacity-0"
+              />
+              <div className="bg-arjelblue w-4 h-4 rounded-full absolute -left-6" />
+              <span className="text-sm"> Read Post</span>
+            </a>
+            <a
+              href="/blog/allposts"
+              className="hover:underline underline-offset-2 text-arjelblue"
+            >
+              <span className="text-sm "> All posts</span>
+            </a>
+          </div>
         </article>
       </motion.div>
     </AnimatePresence>

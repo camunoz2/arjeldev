@@ -4,7 +4,7 @@ module.exports = {
     "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
     "./src/pages/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
   ],
-  darkMode: "class",
+  darkMode: class,
   theme: {
     extend: {
       colors: {
