@@ -38,7 +38,7 @@ const { Content } = Astro.props.project;
       class={`relative flex flex-col items-center rounded-xl px-4 z-10 shadow-xl pt-12`}
     >
       <img class="mb-10" src={data.featuredImage} alt="" />
-      <h1 class="text-white text-4xl md:text-6xl lg:text-8xl font-bold">
+      <h1 class="text-white text-4xl md:text-6xl lg:text-8xl font-bold mb-4">
         {data.title}
       </h1>
       <p class="text-white lg:text-xl text-sm">
@@ -52,8 +52,17 @@ const { Content } = Astro.props.project;
     <div class="grid grid-cols-4 gap-4 mt-4">
       <div class="col-span-4 lg:col-span-1">
         <aside class="flex flex-row lg:flex-col gap-4">
-          <ProjectLink link={data.projectLink} client:load />
-          <ProjectLink isGithub link={data.githubLink} client:load />
+          <ProjectLink
+            background={data.cardColor}
+            link={data.projectLink}
+            client:load
+          />
+          <ProjectLink
+            background={data.cardColor}
+            isGithub
+            link={data.githubLink}
+            client:load
+          />
           <UsedStack stack={data.usedStack} client:load />
         </aside>
       </div>

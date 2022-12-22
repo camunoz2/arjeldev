@@ -10,12 +10,15 @@ import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
+import partytown from "@astrojs/partytown";
+
+// https://astro.build/config
 export default defineConfig({
   markdown: {
     syntaxHighlight: "shiki",
     shikiConfig: {
-      theme: "github-dark-dimmed",
-    },
+      theme: "github-dark-dimmed"
+    }
   },
-  integrations: [tailwind(), react(), mdx()],
+  integrations: [tailwind(), react(), mdx(), partytown()]
 });

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^0.11.6",
+    "@astrojs/partytown": "^1.0.2",
     "@astrojs/react": "^1.2.2",
     "@astrojs/tailwind": "^2.1.2",
     "@fontsource/poppins": "^4.5.10",

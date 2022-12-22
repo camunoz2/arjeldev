@@ -1,11 +1,14 @@
-const ProjectLink = ({ link = "", isGithub = false }) => {
+const ProjectLink = ({ link = "", isGithub = false, background = "" }) => {
   return (
-    <div className="rounded-xl bg-arjelgrey2 p-4 gap-2">
+    <div
+      style={{ backgroundColor: background }}
+      className="rounded-xl p-4 gap-2"
+    >
       <a
         href={link}
-        className="rounded-sm block text-center text-arjelblue p-2 text-xl hover:cursor-pointer"
+        className="rounded-sm block text-center text-white p-2 text-xl hover:cursor-pointer"
       >
-        Ir al {isGithub ? "Github" : "Link"}
+        Go to {isGithub ? "repo" : "project"}
       </a>
     </div>
   );

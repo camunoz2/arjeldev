@@ -15,9 +15,9 @@ const HomeExtras = () => {
             About me!
           </h2>
           <p className="text-sm md:text-xl text-arjelgrey2 py-4 max-w-[500px]">
-            I'm Cristian M. Arjel and I specialize in Front-End development. My
-            focus is on creating personalized, modern, and efficient web
-            applications with a unique personality that users will enjoy.
+            Yo, I'm Cristian M. Arjel, a FrontEnd Dev. Welcome to my little
+            experiments / side projects / blog writting. If you need some of
+            this, just steal it! I'll be pleased.
           </p>
         </div>
       </div>

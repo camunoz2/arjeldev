@@ -61,7 +61,7 @@ const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
                 : data[currentCard - 1].cardColor,
             }}
             className="absolute flex items-center justify-center bg-arjelgrey1 rounded-xl w-full h-44 -z-30 -translate-y-4"
-          ></div>
+          />
         </div>
       </motion.div>
 
@@ -136,7 +136,7 @@ const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
 
                 <div className="flex flex-col gap-8">
                   <div className="flex flex-col">
-                    <h1 className="text-5xl lg:text-7xl md:text-6xl xl:text-6xl 2xl:text-8xl text-white font-bold">
+                    <h1 className="text-5xl lg:text-7xl md:text-6xl xl:text-6xl 2xl:text-8xl text-white font-bold mb-2">
                       {data[currentCard].title}
                     </h1>
                     <p className="text-arjelblue md:text-xl xl:text-xl">
