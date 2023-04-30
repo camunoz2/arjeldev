@@ -2,7 +2,7 @@
 
 Hi! Im Cristian M. Arjel, Fullstack Web Dev, this is my portolfio website. It is made with Astro / Framer Motion / Tailwindcss / React / Markdown. The design is made by me with figma, and the icons for the blog post and the portfolio projects, are made with blender.
 
-## Roadmap
+## Roadmaps
 
 - [ ] English / Spanish Language 
 - [ ] ReactThreeFiber animated 3D Assets 
