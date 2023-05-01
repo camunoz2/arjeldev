@@ -72,9 +72,8 @@ const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
               <div
                 key={item.slug}
                 onClick={() => setCurrentCard(index)}
-                className={`${
-                  currentCard === index ? "bg-slate-500" : "bg-slate-200"
-                } w-6 h-2 rounded-full  hover:cursor-pointer hover:bg-slate-500`}
+                className={`${currentCard === index ? "bg-slate-500" : "bg-slate-200"
+                  } w-6 h-2 rounded-full  hover:cursor-pointer hover:bg-slate-500`}
               />
             );
           })}

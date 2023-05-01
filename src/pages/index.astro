@@ -5,8 +5,8 @@ import HomeExtras from "../components/HomeExtras";
 import BlogSection from "../components/BlogSection";
 import ArjelFixed from "../components/ArjelFixed";
 
-const projectQuery = await Astro.glob("../content/projects/*.mdx");
-const blogQuery = await Astro.glob("../content/posts/*.mdx");
+const projectQuery = await Astro.glob("../content/projects/*.md");
+const blogQuery = await Astro.glob("../content/posts/*.md");
 
 const projects = projectQuery.map((project) => {
   return {

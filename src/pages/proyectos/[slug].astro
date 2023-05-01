@@ -7,8 +7,8 @@ import type { ProjectFrontmatter } from "../../customTypes";
 // Generate Project pages
 export async function getStaticPaths() {
   const allProjects = await Astro.glob<ProjectFrontmatter>(
-    "../../content/projects/*.mdx"
-  );
+    "../../content/projects/*.md"
+ );
   return allProjects.map((project) => {
     return {
       params: { slug: project.frontmatter.slug },

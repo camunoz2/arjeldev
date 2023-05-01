@@ -5,7 +5,7 @@ import type { BlogFrontmatter } from "../../customTypes";
 // Generate Project pages
 export async function getStaticPaths() {
   const allPost = await Astro.glob<BlogFrontmatter>(
-    "../../content/posts/*.mdx"
+    "../../content/posts/*.md"
   );
   return allPost.map((post) => {
     return {
