@@ -1,26 +1,24 @@
 ---
+import type { DevPost } from "../../customTypes";
 import Layout from "../../layouts/Layout.astro";
-import type { BlogFrontmatter } from "../../customTypes";
 
 // Generate Project pages
 export async function getStaticPaths() {
-  const allPost = await Astro.glob<BlogFrontmatter>(
-    "../../content/posts/*.md"
-  );
-  return allPost.map((post) => {
+  const response = await fetch("https://dev.to/api/articles?username=arjeldev")
+  const data: DevPost[] = await response.json()
+
+  return data.map((post) => {
     return {
-      params: { slug: post.frontmatter.slug },
+      params: { slug: post.slug },
       props: {
-        frontmatter: post.frontmatter,
-        post,
+        title: post.title,
+        description: post.description,
       },
     };
   });
 }
 
 const { slug } = Astro.params;
-const data = Astro.props.frontmatter;
-const { Content } = Astro.props.post;
 ---
 
 <Layout title={slug as string}>
@@ -32,7 +30,7 @@ const { Content } = Astro.props.post;
       </div>
     </div>
     <header
-      style={{ backgroundColor: data.cardColor }}
+      style={{ backgroundColor: "#3d3d3d" }}
       class={`relative flex flex-col items-center rounded-xl px-4 z-10 shadow-xl pt-12`}
     >
       <img class="mb-10" src={data.featuredImage} alt="" />

@@ -24,6 +24,7 @@ module.exports = {
       },
       backgroundImage: {
         websites: "url('/images/websites.webp')",
+        noise: "url('/noise.webp')"
       },
     },
   },

@@ -2,11 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import HeaderCards from "../components/HeaderCards";
 import HomeExtras from "../components/HomeExtras";
-import BlogSection from "../components/BlogSection";
+import BlogSection from "../components/BlogSection.astro";
 import ArjelFixed from "../components/ArjelFixed";
+import type { DevPost } from "../customTypes";
 
 const projectQuery = await Astro.glob("../content/projects/*.md");
-const blogQuery = await Astro.glob("../content/posts/*.md");
+const response = await fetch("https://dev.to/api/articles?username=arjeldev");
+const blogPosts: DevPost[] = await response.json();
 
 const projects = projectQuery.map((project) => {
   return {
@@ -19,26 +21,15 @@ const projects = projectQuery.map((project) => {
     summary: project.frontmatter.summary,
   };
 });
-
-const posts = blogQuery.map((post) => {
-  return {
-    title: post.frontmatter.title,
-    cardColor: post.frontmatter.cardColor,
-    featuredImage: post.frontmatter.featuredImage,
-    publishDate: post.frontmatter.publishDate,
-    slug: post.frontmatter.slug,
-    summary: post.frontmatter.summary,
-  };
-});
 ---
 
 <Layout title="Home">
-  <ArjelFixed client:load />
+  <!-- <ArjelFixed client:load /> -->
   <main class="flex flex-col items-end">
     <div class="flex flex-col gap-4 xl:max-w-[1000px] 2xl:max-w-[1300px]">
-      <HeaderCards data={projects} client:load />
-      <HomeExtras client:load />
-      <BlogSection data={posts} client:load />
+      <!-- <HeaderCards data={projects} client:load /> -->
+      <!-- <HomeExtras client:load /> -->
+      <BlogSection data={blogPosts} />
     </div>
   </main>
 </Layout>

@@ -44,7 +44,6 @@ const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
 
   return (
     <>
-      {/* BackCard */}
       <motion.div
         key={currentCard}
         initial={{ y: -30, opacity: 0 }}
