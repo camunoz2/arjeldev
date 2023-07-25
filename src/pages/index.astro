@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import HeaderCards from "../components/HeaderCards";
 import HomeExtras from "../components/HomeExtras";
 import BlogSection from "../components/BlogSection.astro";
-import ArjelFixed from "../components/ArjelFixed";
+import ArjelFixed from "../components/ArjelFixed.astro";
 import type { DevPost } from "../customTypes";
 
 const projectQuery = await Astro.glob("../content/projects/*.md");
@@ -24,7 +24,7 @@ const projects = projectQuery.map((project) => {
 ---
 
 <Layout title="Home">
-  <!-- <ArjelFixed client:load /> -->
+  <ArjelFixed />
   <main class="flex flex-col items-end">
     <div class="flex flex-col gap-4 xl:max-w-[1000px] 2xl:max-w-[1300px]">
       <!-- <HeaderCards data={projects} client:load /> -->
