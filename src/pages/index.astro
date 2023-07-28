@@ -6,21 +6,9 @@ import BlogSection from "../components/BlogSection.astro";
 import ArjelFixed from "../components/ArjelFixed.astro";
 import type { DevPost } from "../customTypes";
 
-const projectQuery = await Astro.glob("../content/projects/*.md");
 const response = await fetch("https://dev.to/api/articles?username=arjeldev");
 const blogPosts: DevPost[] = await response.json();
 
-const projects = projectQuery.map((project) => {
-  return {
-    title: project.frontmatter.title,
-    cardColor: project.frontmatter.cardColor,
-    featuredImage: project.frontmatter.featuredImage,
-    publishDate: project.frontmatter.publishDate,
-    slug: project.frontmatter.slug,
-    subtitle: project.frontmatter.subtitle,
-    summary: project.frontmatter.summary,
-  };
-});
 ---
 
 <Layout title="Home">
