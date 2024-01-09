@@ -45,7 +45,7 @@ const ContactOverlay = ({ close }: Props) => {
             <p className="text-sm">Front-End / WebDev</p>
           </div>
           <motion.img
-            src={svgClose}
+            src={svgClose.src}
             onClick={close}
             whileHover={{ scale: 1.2, cursor: "pointer", rotate: 45 }}
             className="w-10"

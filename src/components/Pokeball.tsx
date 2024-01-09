@@ -19,7 +19,7 @@ const Pokeball = () => {
         className="hover:cursor-pointer"
         drag
         dragConstraints={bounding}
-        src={pokeball}
+        src={pokeball.src}
         alt=""
         width={60}
         height={60}

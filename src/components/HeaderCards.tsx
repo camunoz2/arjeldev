@@ -104,7 +104,7 @@ const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
                       stiffness: 23,
                       duration: 0.1,
                     }}
-                    src={svgOpen}
+                    src={svgOpen.src}
                     width={30}
                     alt="open card"
                   />
@@ -119,7 +119,7 @@ const HeaderCards = ({ data }: { data: ProjectFrontmatter[] }) => {
                       duration: 0.1,
                     }}
                     onClick={changeCard}
-                    src={svgClose}
+                    src={svgClose.src}
                     width={30}
                     alt="close card"
                   />

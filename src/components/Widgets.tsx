@@ -13,14 +13,14 @@ const Widgets = () => {
           href="https://dribbble.com/arjeldev"
           className="flex flex-col items-center gap-2"
         >
-          <img src={dribbble} alt="dribbble folio" />
+          <img src={dribbble.src} alt="dribbble folio" />
           <h2 className="hidden lg:block font-bold">dribbble</h2>
         </a>
         <a
           href="https://codepen.io/arjeldev"
           className="flex flex-col items-center gap-2"
         >
-          <img src={codepen} alt="codepn folio" />
+          <img src={codepen.src} alt="codepn folio" />
           <h2 className="font-bold hidden lg:block">codepen</h2>
         </a>
       </div>

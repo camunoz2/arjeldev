@@ -63,7 +63,7 @@ const BlogSection = ({ data }: { data: BlogFrontmatter[] }) => {
             <a href={`blog/${data[currentBlogPost].slug}`}>
               <motion.img
                 whileHover={{ scale: 1.3 }}
-                src={svgOpen}
+                src={svgOpen.src}
                 width={30}
                 alt="open card"
               />
@@ -71,7 +71,7 @@ const BlogSection = ({ data }: { data: BlogFrontmatter[] }) => {
             <motion.img
               onClick={changeCard}
               whileHover={{ scale: 1.3 }}
-              src={svgClose}
+              src={svgClose.src}
               width={30}
               alt="close card"
             />

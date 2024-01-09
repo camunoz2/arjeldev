@@ -9,7 +9,7 @@ const ProfileImage = ({ widget = false }) => {
     <div className={widgetStyles}>
       <motion.img
         className="w-full h-full object-contain rounded-lg select-none"
-        src={image}
+        src={image.src}
         alt="me"
       />
     </div>
