@@ -12,12 +12,12 @@ const HomeExtras = () => {
       <div className="lg:col-span-4 col-span-7">
         <div className="rounded-xl bg-arjelgrey3 h-full flex flex-col justify-center px-12 py-10 md:py-8">
           <h2 className="text-4xl md:text-5xl font-bold text-arjelgrey4">
-            About me!
+            Sobre Mi
           </h2>
-          <p className="text-sm md:text-xl text-arjelgrey2 py-4 max-w-[500px]">
-            Yo, I'm Cristian M. Arjel, a FrontEnd Dev. Welcome to my little
-            experiments / side projects / blog writting. If you need some of
-            this, just steal it! I'll be pleased.
+          <p className="text-sm md:text-xl text-arjelgrey2 py-2 max-w-[500px]">
+            ¡Hola! Soy Cristian Muñoz, el desarrollador web fullstack detrás de
+            este sitio. De repente escribo por este lugar y muestro algunos
+            experimentos web
           </p>
         </div>
       </div>

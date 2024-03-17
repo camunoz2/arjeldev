@@ -54,11 +54,9 @@ const ContactOverlay = ({ close }: Props) => {
 
         <div className="bg-white rounded-xl col-span-3 md:col-span-2 row-span-2 flex items-center justify-center px-10">
           <p className="text-xs md:text-base">
-            Hi! If you liked my website and are interested in working with me as
-            a front end developer, please feel free to reach out to me via email
-            (camunoz2@gmail.com) or, if you wish, we can talk in Twitter or
-            Whatsapp. I'm excited to hear from you and discuss potential
-            opportunities! Best regards
+            ¡Hola! Si te gustó mi sitio web y estás interesado en trabajar
+            conmigo como desarrollador fullstack, no dudes en contactarme por
+            Twitter o WhatsApp. Saludos!
           </p>
         </div>
 
