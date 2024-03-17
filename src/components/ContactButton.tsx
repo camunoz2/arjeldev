@@ -11,7 +11,7 @@ const ContactButton = () => {
         className="rounded-full bg-arjelgrey1 px-8 py-2 text-sm hover:cursor-pointer"
         onClick={() => setIsOpen(true)}
       >
-        Lets Talk
+        Conversemos!
       </div>
       <AnimatePresence mode="popLayout">
         {isOpen && <ContactOverlay close={() => setIsOpen(false)} />}
