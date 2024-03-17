@@ -17,13 +17,13 @@ landscapeProjectImages:
   ]
 ---
 
-# Parvulapps
+## Parvulapps
 
 ### Micro SaaS for education and measurement
 
 The ed tech is one of my favourite topics, maybe because i am a teacher and want to contribute to education, but also, because i am a father and want to contribute to the education of my kids. Since i was teaching in school, and later i was in charge of the school online platform, the profesionalism and dedication of the teacchers of the little ones, were out of this world. But they never had the oportinity of workin with a proper software for internal measurements of their childrens outcomes, so, i develop and MVP for this idea, and the teachers agreed on its use, and maybe the expansion of this tool to other schools as well.
 
-## Development
+### Development
 
 The project was developed in `Next` because i wanted to explore all its fullstacks capabilities. This was the first time that i worked with mutations on server and client state, that was the motor that lead me to use the awesome `tastack-query` tool. This tool became handy, and i learn so much from its use, concept like invalidate cache, mutations, server-state vs client-state, refetching, query-keys.
 
@@ -105,7 +105,6 @@ model Objective {
   studentId       Int?
   @@index([parentCoreId])
 }
-
 ```
 
 I was thinking of switching the scores out of the Objective table, but, since i needed to show the objectives and its scores in a loop, in this way i prevented some extra request to the server.
