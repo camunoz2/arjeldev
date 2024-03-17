@@ -1,24 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import HeaderCards from "../components/HeaderCards";
 import HomeExtras from "../components/HomeExtras";
 import BlogSection from "../components/BlogSection";
 import ArjelFixed from "../components/ArjelFixed";
 
-const projectQuery = await Astro.glob("../content/projects/*.md");
 const blogQuery = await Astro.glob("../content/posts/*.md");
-
-const projects = projectQuery.map((project) => {
-  return {
-    title: project.frontmatter.title,
-    cardColor: project.frontmatter.cardColor,
-    featuredImage: project.frontmatter.featuredImage,
-    publishDate: project.frontmatter.publishDate,
-    slug: project.frontmatter.slug,
-    subtitle: project.frontmatter.subtitle,
-    summary: project.frontmatter.summary,
-  };
-});
 
 const posts = blogQuery.map((post) => {
   return {
@@ -36,7 +22,6 @@ const posts = blogQuery.map((post) => {
   <ArjelFixed client:load />
   <main class="flex flex-col items-end">
     <div class="flex flex-col gap-4 xl:max-w-[1000px] 2xl:max-w-[1300px]">
-      <HeaderCards data={projects} client:load />
       <HomeExtras client:load />
       <BlogSection data={posts} client:load />
     </div>
