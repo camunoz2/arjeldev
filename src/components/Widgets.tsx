@@ -25,8 +25,8 @@ const Widgets = () => {
         </a>
       </div>
       <ProfileImage />
-      <Curriculum link="https://drive.google.com/uc?export=download&id=1Sas7BoqFvrKVb_-F4_O4cwo4424Get9-" text="CV ENG" />
-      <Curriculum link="https://drive.google.com/uc?export=download&id=1sPUJ4vmoKSCHmRWauqYiVSeznvGpEfDY" text="CV ESP" />
+      <Curriculum link="https://drive.google.com/uc?export=download&id=1Sas7BoqFvrKVb_-F4_O4cwo4424Get9-" text="CV ESP" />
+      <Curriculum link="https://drive.google.com/uc?export=download&id=1sPUJ4vmoKSCHmRWauqYiVSeznvGpEfDY" text="CV ENG" />
     </div>
   );
 };
