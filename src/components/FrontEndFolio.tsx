@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const FrontEndFolio = () => {
   return (
-    <div className="relative col-span-1 row-span-3 lg:row-span-2 text-center rounded-xl py-4 bg-arjelgrey1 flex flex-col justify-center items-center overflow-hidden">
+    <div className="relative col-span-1 row-span-3 lg:row-span-3 text-center rounded-xl py-4 bg-arjelgrey1 flex flex-col justify-center items-center overflow-hidden">
       <h2 className="text-base md:text-2xl font-bold tracking-tighter">
         Te tocó:
       </h2>
