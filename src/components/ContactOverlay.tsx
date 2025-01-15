@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import ProfileImage from "./ProfileImage";
+import ProfileImage from "./ProfileContact";
 import svgClose from "../images/SvgClose.svg";
 
 interface Props {
