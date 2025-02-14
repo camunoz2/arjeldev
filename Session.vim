@@ -16,15 +16,22 @@ endif
 badd +24 .gitignore
 badd +11 src/components/Curriculum.tsx
 badd +29 src/components/Widgets.tsx
-badd +5 src/components/ProfileImage.tsx
+badd +1 src/components/ProfileImage.tsx
 badd +3 src/components/FrontEndFolio.tsx
 badd +1 src/components/HeaderCards.tsx
 badd +20 ~/.config/nvim/lua/config/options.lua
-badd +1 src/pages/index.astro
+badd +22 src/pages/index.astro
+badd +3 src/components/HomeExtras.tsx
+badd +13 src/components/ArjelFixed.tsx
+badd +17 src/components/ContactButton.tsx
+badd +53 src/components/ContactOverlay.tsx
+badd +7 src/components/ProfileContact.tsx
+badd +1 src/images/SvgClose.svg
 argglobal
 %argdel
-edit src/pages/index.astro
+edit src/components/ProfileContact.tsx
 argglobal
+balt src/components/ContactOverlay.tsx
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -35,12 +42,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 20 - ((19 * winheight(0) + 22) / 44)
+let s:l = 7 - ((6 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 20
-normal! 0
+keepjumps 7
+normal! 056|
 lcd ~/projects/arjeldev
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -54,6 +61,7 @@ if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
